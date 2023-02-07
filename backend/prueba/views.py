@@ -41,6 +41,7 @@ El nombre(name) sirve para identificar el valor de ese campo.
         """
     )
 #Ruta: /post
+#Enviar data post formulario
 @csrf_exempt
 def postFormularioEndpoint(request):
     if request.method == "POST":#Si es un metodo POST
@@ -51,6 +52,7 @@ def postFormularioEndpoint(request):
         <p>Password: {password}</p>
         """)
     return HttpResponse("Llego")
+#QueryParametros, ?usu=123&pass=1434
 def getQueryParameters(request):
     if request.method == "GET":
         username = request.GET.get("usu")
@@ -60,6 +62,7 @@ def getQueryParameters(request):
         <p>Password: {password}</p>
         """
         )
+#getPathParameters, /juan/asdf
 def getPathParameters(request, username, password):
     if request.method == "GET":
         return HttpResponse(f"""
@@ -67,12 +70,16 @@ def getPathParameters(request, username, password):
         <p>Password: {password}</p>
         """
         )
+#Para crear data cruda, solo sirve para peticciones POST
 @csrf_exempt
 def getRawData(request):
     if request.method == "POST":
-        strBody = request.body
-        dictUsuario = json.loads(strBody) #Convierte String(json) --> objeto diccionario python
+        strBody = request.body#El objeto request.body es donde esta llegando la data en duro
+        dictUsuario = json.loads(strBody) #Convierte {String(json) --> objeto diccionario python}
         jsonUsuario = json.dumps(dictUsuario) #De dicc a String
+        #No usamos lo de abajo porque:
+        #Se dice que los Endpoints nunca deben enviar HTML
+        #Simplemente tiene que enviar datos.
         #f"""
         #<p>Usuario: {dictUsuario["username"]}</p>
         #<p>Clave: {dictUsuario["password"]}</p>

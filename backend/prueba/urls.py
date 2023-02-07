@@ -10,7 +10,7 @@ urlpatterns = {
     path("post", views.postFormularioEndpoint),
     #Hacer peticiones http, mediante links
     path("get-query",views.getQueryParameters),
-    path("get-path/<str:username>/<str:password>",views.getPathParameters),
+    path("get-path/<str:username>/<str:password>",views.getPathParameters),#Mismo nombre q el Endpoint
     path("post-raw", views.getRawData)
     
 }
