@@ -5,5 +5,12 @@ from django.urls import path
 from . import views
 urlpatterns = {
     path("hola", views.holaEndpoint),
-    path("adios", views.adiosEndpoint)
+    path("adios", views.adiosEndpoint),
+    path("html", views.htmlEndpoint),
+    path("post", views.postFormularioEndpoint),
+    #Hacer peticiones http, mediante links
+    path("get-query",views.getQueryParameters),
+    path("get-path/<str:username>/<str:password>",views.getPathParameters),
+    path("post-raw", views.getRawData)
+    
 }
